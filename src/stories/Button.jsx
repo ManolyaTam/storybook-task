@@ -5,8 +5,21 @@ import './button.css';
 /**
  * Primary UI component for user interaction
  */
-export const Button = ({ primary, backgroundColor, size, label, ...props }) => {
-  const mode = primary ? 'storybook-button--primary' : 'storybook-button--secondary';
+export const Button = ({ type, backgroundColor, size, label, noBorder, ...props }) => {
+  let mode;
+  switch (type) {
+    case 'primary':
+      mode = 'storybook-button--primary'
+      break;
+    case 'secondary':
+      mode = 'storybook-button--secondary'
+      break;
+    case 'text':
+      mode = 'storybook-button--text';
+      break;
+    default:
+      mode = '';
+  }
   return (
     <button
       type="button"
@@ -20,25 +33,10 @@ export const Button = ({ primary, backgroundColor, size, label, ...props }) => {
 };
 
 Button.propTypes = {
-  /**
-   * Is this the principal call to action on the page?
-   */
-  primary: PropTypes.bool,
-  /**
-   * What background color to use
-   */
-  backgroundColor: PropTypes.string,
-  /**
-   * How large should the button be?
-   */
+  backgroundColor: PropTypes.oneOf(['blue', 'orange', 'lightgrey']),
   size: PropTypes.oneOf(['small', 'medium', 'large']),
-  /**
-   * Button contents
-   */
+  type: PropTypes.oneOf(['primary', 'secondary', 'text']),
   label: PropTypes.string.isRequired,
-  /**
-   * Optional click handler
-   */
   onClick: PropTypes.func,
 };
 
@@ -47,4 +45,5 @@ Button.defaultProps = {
   primary: false,
   size: 'medium',
   onClick: undefined,
+  onHover: undefined
 };

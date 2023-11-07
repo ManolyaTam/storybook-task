@@ -16,6 +16,16 @@
   background-color: transparent;
   box-shadow: rgba(0, 0, 0, 0.15) 0px 0px 0px 1px inset;
 }
+
+.storybook-button--text {
+  background-color: white;
+  outline: none;
+}
+
+.storybook-button--text:hover {
+  text-decoration: underline;
+}
+
 .storybook-button--small {
   font-size: 12px;
   padding: 10px 16px;
